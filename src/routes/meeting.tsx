@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { PageHeader } from "@/components/PageHeader";
 import { AIOutput } from "@/components/AIOutput";
 import { ResponsibleAINotice } from "@/components/ResponsibleAINotice";
+import { VoiceRecorder } from "@/components/VoiceRecorder";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -56,16 +57,23 @@ function MeetingPage() {
       />
       <div className="grid gap-6 px-4 py-6 sm:px-8 lg:grid-cols-2">
         <form onSubmit={submit} className="rounded-2xl border bg-card p-6 shadow-lg">
-          <Label htmlFor="notes">Paste meeting notes</Label>
+          <Label htmlFor="notes" className="mb-3 block">
+            Paste or dictate meeting notes
+          </Label>
+          <VoiceRecorder
+            onTranscript={(text) =>
+              setNotes((prev) => (prev ? `${prev.trimEnd()} ${text}` : text))
+            }
+          />
           <Textarea
             id="notes"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            placeholder="Paste your raw meeting notes here..."
+            placeholder="Paste your raw meeting notes here, or use the mic above to dictate..."
             rows={14}
             required
             maxLength={20000}
-            className="mt-2"
+            className="mt-3"
           />
           <Button type="submit" disabled={loading} className="mt-4 w-full">
             {loading ? (
