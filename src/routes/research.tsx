@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { PageHeader } from "@/components/PageHeader";
 import { AIOutput } from "@/components/AIOutput";
 import { ResponsibleAINotice } from "@/components/ResponsibleAINotice";
+import { VoiceRecorder } from "@/components/VoiceRecorder";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -53,8 +54,13 @@ function ResearchPage() {
       <PageHeader title="AI Research Assistant" description="Structured briefings with insights and recommendations" />
       <div className="space-y-6 px-4 py-6 sm:px-8">
         <form onSubmit={submit} className="rounded-2xl border bg-card p-6 shadow-lg">
-          <Label htmlFor="topic">Research topic</Label>
-          <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+          <Label htmlFor="topic">Research topic (type or dictate)</Label>
+          <VoiceRecorder
+            onTranscript={(text) =>
+              setTopic((prev) => (prev ? prev + " " + text : text))
+            }
+          />
+          <div className="mt-3 flex flex-col gap-3 sm:flex-row">
             <Input
               id="topic"
               value={topic}
