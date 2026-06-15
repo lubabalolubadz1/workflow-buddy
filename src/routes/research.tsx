@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { PageHeader } from "@/components/PageHeader";
 import { AIOutput } from "@/components/AIOutput";
 import { ResponsibleAINotice } from "@/components/ResponsibleAINotice";
+import { VoiceRecorder } from "@/components/VoiceRecorder";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
